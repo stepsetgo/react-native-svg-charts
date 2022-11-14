@@ -11,12 +11,26 @@ class ProgressCircle extends PureComponent {
         width: 0,
     }
 
+    toRoundedEven = (val) => {
+      val = Math.round(val);
+      val = Boolean(val % 2) ? val + 1 : val;
+      return val;
+    };
+
     _onLayout(event) {
-        const {
+        let {
             nativeEvent: {
                 layout: { height, width },
             },
         } = event
+
+        height = Math.floor(height);
+        width = Math.floor(width);
+
+        height = this.toRoundedEven(height);
+        
+        width = this.toRoundedEven(height);
+
         this.setState({ height, width })
     }
 
@@ -38,7 +52,9 @@ class ProgressCircle extends PureComponent {
 
         const { height, width } = this.state
 
-        const outerDiameter = Math.min(width, height)
+        let outerDiameter = this.toRoundedEven(Math.min(width, height));
+
+        const radius = outerDiameter / 2;
 
         if (!isFinite(progress) || isNaN(progress)) {
             progress = 0
@@ -70,8 +86,8 @@ class ProgressCircle extends PureComponent {
             ...slice,
             path: shape
                 .arc()
-                .outerRadius(outerDiameter / 2) // Radius of the pie
-                .innerRadius(outerDiameter / 2 - strokeWidth) // Inner radius: to create a donut or pie
+                .outerRadius(radius) // Radius of the pie
+                .innerRadius(radius - strokeWidth) // Inner radius: to create a donut or pie
                 .startAngle(index === 0 ? startAngle : slice.startAngle)
                 .endAngle(index === 0 ? endAngle : slice.endAngle)
                 .cornerRadius(cornerRadius)(),
@@ -85,9 +101,9 @@ class ProgressCircle extends PureComponent {
         return (
             <View style={style} onLayout={(event) => this._onLayout(event)}>
                 {height > 0 && width > 0 && (
-                    <Svg style={{ height, width }}>
+                    <Svg style={{ width, height }}>
                         {/* center the progress circle*/}
-                        <G x={width / 2} y={height / 2}>
+                        <G x={radius} y={radius}>
                             {React.Children.map(children, (child) => {
                                 if (child && child.props.belowChart) {
                                     return React.cloneElement(child, extraProps)
