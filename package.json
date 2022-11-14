@@ -63,14 +63,14 @@
         "registry": "http://yarnpkg-1.staging.ssg.org/"
     },
     "devDependencies": {
-        "@react-native-community/bob": "^0.10.0",
+        "@react-native-community/bob": "^0.17.1",
         "@storybook/addon-actions": "^3.2.14",
         "@storybook/addon-knobs": "^3.2.14",
         "@storybook/addon-links": "^3.2.14",
         "@storybook/react-native": "^3.2.14",
-        "babel-eslint": "^7.2.3",
-        "babel-jest": "20.0.1",
-        "babel-preset-react-native": "1.9.1",
+        "babel-eslint": "^10.1.0",
+        "babel-jest": "29.3.1",
+        "babel-preset-react-native": "4.0.1",
         "date-fns": "^1.28.5",
         "eslint": "^4.19.0",
         "eslint-config-standard": "^10.2.1",
