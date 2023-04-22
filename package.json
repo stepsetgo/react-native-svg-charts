@@ -59,9 +59,6 @@
         "react-native": ">=0.46.0",
         "react-native-svg": "^6.2.1||^7.0.3"
     },
-    "publishConfig": {
-        "registry": "http://yarnpkg-1.staging.ssg.org/"
-    },
     "devDependencies": {
         "@react-native-community/bob": "^0.17.1",
         "@storybook/addon-actions": "^3.2.14",
